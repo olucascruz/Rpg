@@ -11,26 +11,26 @@ import javax.swing.*;
 
 public class TelaDeJogo extends JFrame implements ActionListener{
 	private static final long serialVersionUID = 1L;
-	Image bgInicial;
-	final int WIDTH = 500;
-	final int HEIGHT = 500;
-	String state = "MENU";
-	
+	private Image bgInicial;
+	private final int WIDTH = 500;
+	private final int HEIGHT = 500;
+	private String state = "MENU";
+	private JButton buttonStart;
 	public TelaDeJogo() {
-		JButton button = new JButton();
+		buttonStart = new JButton();
 		int buttonWidth = 80;
 		int buttonHeight = 40;
-		button.addActionListener(this);
-		button.setPreferredSize(new Dimension(buttonWidth, buttonHeight));
-		button.setText("START");
-		button.setLocation(WIDTH/2 - buttonWidth, HEIGHT-100);
+		buttonStart.addActionListener(this);
+		buttonStart.setPreferredSize(new Dimension(buttonWidth, buttonHeight));
+		buttonStart.setText("START");
+		buttonStart.setLocation(WIDTH/2 - buttonWidth, HEIGHT-100);
 		setBackground (Color.GRAY);
 		loadImage();
 		setLayout(new FlowLayout());
         this.setSize(WIDTH, HEIGHT);
         setResizable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        add(button);
+        add(buttonStart);
         setVisible(true);
       
       
@@ -63,6 +63,8 @@ public class TelaDeJogo extends JFrame implements ActionListener{
 	
 	public void setState(String state) {
 		this.state = state;
+		buttonStart.setVisible(false);
+		repaint();
 		System.out.println("Jogo");
 	}
 
