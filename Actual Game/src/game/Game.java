@@ -21,7 +21,7 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	Mago mago = new Mago("Felix", 100, 60);
 	Dragao dragao = new Dragao("Bruto", 100, 30);
 	
-	// Poção - Mago - Dragão
+	// Poï¿½ï¿½o - Mago - Dragï¿½o
 	int cenas[] = {1, 1, 1};
 	int cena_atual = 0;
 	Random rand;
@@ -33,7 +33,7 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	
 	boolean clique_para_continuar = true;
 	
-	// Opções do cavaleiro
+	// Opï¿½ï¿½es do cavaleiro
 	boolean cavaleiro_opcoes = false;
 	int cavaleiro_opcao = 0;
 	
@@ -73,339 +73,313 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		return "";
 	}
 	
+	public void DrawImg(Graphics g, String path, int x, int y, int w, int h) {
+		g.drawImage(new ImageIcon(getClass().getResource(path)).getImage(),
+				x,
+				y,
+				w,
+				h, null);
+	}
+	
 	public void updateOpcoes() {
 		// Atualizar o sublinhado
 	}
 	
 	public void controlarAcoesDosPersonagens() {
-		// Métodos do Luquinhas
+		// Mï¿½todos do Luquinhas
 	}
 	
 	public void Map(Graphics g) {
 		
 		if(mago_ativo) {
 			// Floresta de Noite
-			g.drawImage(new ImageIcon(getClass().getResource(mago.getBackground())).getImage(),
+			DrawImg(g,mago.getBackground(),
 					0,
 					0,
 					700,
-					500, null);
+					500);
 			// Mago
-			g.drawImage(new ImageIcon(getClass().getResource(mago.getImage())).getImage(),
+			DrawImg(g, mago.getImage(),
 					mago.getPosition_x(),
 					mago.getPosition_y(),
 					600,
-					420, null);
+					420);
 			
 			// Vidas
 			if(mago.getVida() == 3) {
-				g.drawImage(new ImageIcon(getClass().getResource("img/coracao_cheio.png")).getImage(),
+				DrawImg(g, "img/coracao_cheio.png",
 						480,
 						-20,
 						600,
-						420, null);
-				g.drawImage(new ImageIcon(getClass().getResource("img/coracao_cheio.png")).getImage(),
+						420);
+				DrawImg(g, "img/coracao_cheio.png",
 						540,
 						-20,
 						600,
-						420, null);
-				g.drawImage(new ImageIcon(getClass().getResource("img/coracao_cheio.png")).getImage(),
+						420);
+				DrawImg(g, "img/coracao_cheio.png",
 						600,
 						-20,
 						600,
-						420, null);
+						420);
 			} else if(mago.getVida() == 2){
-				g.drawImage(new ImageIcon(getClass().getResource("img/coracao_cheio.png")).getImage(),
+				DrawImg(g, "img/coracao_cheio.png",
 						480,
 						-20,
 						600,
-						420, null);
-				g.drawImage(new ImageIcon(getClass().getResource("img/coracao_cheio.png")).getImage(),
+						420);
+				DrawImg(g, "img/coracao_cheio.png",
 						540,
 						-20,
 						600,
-						420, null);
-				g.drawImage(new ImageIcon(getClass().getResource("img/coracao_vazio.png")).getImage(),
+						420);
+				DrawImg(g, "img/coracao_vazio.png",
 						600,
 						-20,
 						600,
-						420, null);
+						420);
 			} else if(mago.getVida() == 1) {
-				g.drawImage(new ImageIcon(getClass().getResource("img/coracao_cheio.png")).getImage(),
+				DrawImg(g, "img/coracao_cheio.png",
 						480,
 						-20,
 						600,
-						420, null);
-				g.drawImage(new ImageIcon(getClass().getResource("img/coracao_vazio.png")).getImage(),
+						420);
+				DrawImg(g, "img/coracao_vazio.png",
 						540,
 						-20,
 						600,
-						420, null);
-				g.drawImage(new ImageIcon(getClass().getResource("img/coracao_vazio.png")).getImage(),
+						420);
+				DrawImg(g, "img/coracao_vazio.png",
 						600,
 						-20,
 						600,
-						420, null);
+						420);
 			}
 			/*
 			// Rapidez
-			g.drawImage(new ImageIcon(getClass().getResource(mago.getRapidez())).getImage(),
+			DrawImg(g, mago.getRapidez(),
 					30,
 					40,
 					600,
-					420, null);
+					420);
 			
-			// Invisível
-			g.drawImage(new ImageIcon(getClass().getResource(mago.getInvisivel())).getImage(),
+			// Invisï¿½vel
+			DrawImg(g, mago.getInvisivel(),
 					mago.getPosition_x(),
 					mago.getPosition_y(),
 					600,
-					420, null);
+					420);
 			*/
 		} else if(dragao_ativo) {
 			// Deserto
-			g.drawImage(new ImageIcon(getClass().getResource(dragao.getBackground())).getImage(),
+			DrawImg(g, dragao.getBackground(),
 					0,
 					0,
 					700,
-					500, null);
+					500);
 			
-			// Dragão
-			g.drawImage(new ImageIcon(getClass().getResource(dragao.getImage())).getImage(),
+			// Dragï¿½o
+			DrawImg(g, dragao.getImage(),
 					dragao.getPosition_x(),
 					dragao.getPosition_y(),
 					600,
-					420, null);
+					420);
 			
 			// Vidas
 			if(dragao.getVida() == 3) {
-				g.drawImage(new ImageIcon(getClass().getResource("img/coracao_cheio.png")).getImage(),
-						480,
-						-60,
-						600,
-						420, null);
-				g.drawImage(new ImageIcon(getClass().getResource("img/coracao_cheio.png")).getImage(),
-						540,
-						-60,
-						600,
-						420, null);
-				g.drawImage(new ImageIcon(getClass().getResource("img/coracao_cheio.png")).getImage(),
-						600,
-						-60,
-						600,
-						420, null);
+				DrawImg(g, "img/coracao_cheio.png", 480, -60, 600, 420);
+				DrawImg(g, "img/coracao_cheio.png", 540, -60, 600, 420);
+				DrawImg(g, "img/coracao_cheio.png", 600, -60, 600, 420);
 			} else if(dragao.getVida() == 2){
-				g.drawImage(new ImageIcon(getClass().getResource("img/coracao_cheio.png")).getImage(),
+				DrawImg(g, "img/coracao_cheio.png",
 						480,
 						-60,
 						600,
-						420, null);
-				g.drawImage(new ImageIcon(getClass().getResource("img/coracao_cheio.png")).getImage(),
+						420);
+				DrawImg(g, "img/coracao_cheio.png",
 						540,
 						-60,
 						600,
-						420, null);
-				g.drawImage(new ImageIcon(getClass().getResource("img/coracao_vazio.png")).getImage(),
+						420);
+				DrawImg(g, "img/coracao_vazio.png",
 						600,
 						-60,
 						600,
-						420, null);
+						420);
 			} else if(dragao.getVida() == 1) {
-				g.drawImage(new ImageIcon(getClass().getResource("img/coracao_cheio.png")).getImage(),
+				DrawImg(g, "img/coracao_cheio.png",
 						480,
 						-60,
 						600,
-						420, null);
-				g.drawImage(new ImageIcon(getClass().getResource("img/coracao_vazio.png")).getImage(),
+						420);
+				DrawImg(g, "img/coracao_vazio.png",
 						540,
 						-60,
 						600,
-						420, null);
-				g.drawImage(new ImageIcon(getClass().getResource("img/coracao_vazio.png")).getImage(),
+						420);
+				DrawImg(g, "img/coracao_vazio.png",
 						600,
 						-60,
 						600,
-						420, null);
+						420);
 			}
 			/*
 			// Mordida
-			g.drawImage(new ImageIcon(getClass().getResource(dragao.getMordida())).getImage(),
+			DrawImg(g, dragao.getMordida(),
 					30,
 					20,
 					600,
-					420, null);
+					420);
 			
 			// Rajada de fogo
-			g.drawImage(new ImageIcon(getClass().getResource(dragao.getFogo())).getImage(),
+			DrawImg(g, dragao.getFogo(),
 					30,
 					20,
 					600,
-					420, null);
+					420);
 			*/
 		} else if(pocao_ativo) {
 			// Floresta de dia
-			g.drawImage(new ImageIcon(getClass().getResource(cavaleiro.getBackground())).getImage(),
+			DrawImg(g, cavaleiro.getBackground(),
 					0,
 					0,
 					700,
-					500, null);
+					500);
 			
-			// Poção
-			g.drawImage(new ImageIcon(getClass().getResource("img/pocao.png")).getImage(),
+			// Poï¿½ï¿½o
+			DrawImg(g, "img/pocao.png",
 					100,
 					50,
 					600,
-					450, null);
+					450);
 		}
 		
 		// Cavaleiro
-		g.drawImage(new ImageIcon(getClass().getResource(cavaleiro.getImagePlayer())).getImage(),
-				cavaleiro.getPosition_x(),
-				cavaleiro.getPosition_y(),
+		DrawImg(g, cavaleiro.getImagePlayer(), cavaleiro.getPosition_x(), cavaleiro.getPosition_y(),
 				600,
-				420, null);
-		
+				420);
+	
 		// Vidas
 		if(cavaleiro.getVida() == 3) {
-			g.drawImage(new ImageIcon(getClass().getResource("img/coracao_cheio.png")).getImage(),
-					-10,
-					40,
-					600,
-					420, null);
-			g.drawImage(new ImageIcon(getClass().getResource("img/coracao_cheio.png")).getImage(),
-					50,
-					40,
-					600,
-					420, null);
-			g.drawImage(new ImageIcon(getClass().getResource("img/coracao_cheio.png")).getImage(),
-					110,
-					40,
-					600,
-					420, null);
+			DrawImg(g, "img/coracao_cheio.png", -10, 40, 600, 420);
+			DrawImg(g, "img/coracao_cheio.png", 50, 40, 600, 420);
+			DrawImg(g, "img/coracao_cheio.png", 110, 40, 600, 420);
 		} else if(cavaleiro.getVida() == 2){
-			g.drawImage(new ImageIcon(getClass().getResource("img/coracao_cheio.png")).getImage(),
-					-10,
-					40,
-					600,
-					420, null);
-			g.drawImage(new ImageIcon(getClass().getResource("img/coracao_cheio.png")).getImage(),
+			DrawImg(g, "img/coracao_cheio.png", -10, 40, 600, 420);
+			DrawImg(g, "img/coracao_cheio.png",
 					50,
 					40,
 					600,
-					420, null);
-			g.drawImage(new ImageIcon(getClass().getResource("img/coracao_vazio.png")).getImage(),
+					420);
+			DrawImg(g, "img/coracao_vazio.png",
 					110,
 					40,
 					600,
-					420, null);
+					420);
 		} else if(cavaleiro.getVida() == 1) {
-			g.drawImage(new ImageIcon(getClass().getResource("img/coracao_cheio.png")).getImage(),
+			DrawImg(g, "img/coracao_cheio.png",
 					-10,
 					40,
 					600,
-					420, null);
-			g.drawImage(new ImageIcon(getClass().getResource("img/coracao_vazio.png")).getImage(),
+					420);
+			DrawImg(g, "img/coracao_vazio.png",
 					50,
 					40,
 					600,
-					420, null);
-			g.drawImage(new ImageIcon(getClass().getResource("img/coracao_vazio.png")).getImage(),
+					420);
+			DrawImg(g, "img/coracao_vazio.png",
 					110,
 					40,
 					600,
-					420, null);
+					420);
 		}
 		/*
 		// Atacar
-		g.drawImage(new ImageIcon(getClass().getResource(cavaleiro.getAtacar())).getImage(),
+		DrawImg(g, cavaleiro.getAtacar(),
 				30,
 				20,
 				600,
-				420, null);
+				420);
 	
 		// Defender
-		g.drawImage(new ImageIcon(getClass().getResource(cavaleiro.getDefender())).getImage(),
+		DrawImg(g, cavaleiro.getDefender(),
 				30,
 				20,
 				600,
-				420, null);
+				420);
 		*/
 		
 		// Troca de cenas - stand by
 		if(cena_stand_by) {
-			g.drawImage(new ImageIcon(getClass().getResource(updateCenaStandBy(cena_atual))).getImage(),
+			DrawImg(g, updateCenaStandBy(cena_atual),
 					0,
 					0,
 					700,
-					500, null);
+					500);
 		}
 		
-		// Opções do Cavaleiro
+		// Opï¿½ï¿½es do Cavaleiro
 		if(cavaleiro_opcoes) {
-			// Se for a cena da poção
+			// Se for a cena da poï¿½ï¿½o
 			if(cena_atual == 0) {
-				g.drawImage(new ImageIcon(getClass().getResource("img/cavaleiro_opcoes_1.png")).getImage(),
+				DrawImg(g, "img/cavaleiro_opcoes_1.png",
 						0,
 						0,
 						700,
-						500, null);
+						500);
 				// Sublinhados
 				if(cavaleiro_opcao == 0) {
-					g.drawImage(new ImageIcon(getClass().getResource("img/sublinhado.png")).getImage(),
-							40,
-							0,
-							700,
-							500, null);
+					DrawImg(g, "img/sublinhado.png", 40, 0, 700, 500);
 				} else if(cavaleiro_opcao == 1) {
-					g.drawImage(new ImageIcon(getClass().getResource("img/sublinhado.png")).getImage(),
+					DrawImg(g, "img/sublinhado.png",
 							220,
 							0,
 							700,
-							500, null);
+							500);
 				} else {
-					g.drawImage(new ImageIcon(getClass().getResource("img/sublinhado.png")).getImage(),
+					DrawImg(g, "img/sublinhado.png",
 							400,
 							0,
 							700,
-							500, null);
+							500);
 				}
 			} else {
-				g.drawImage(new ImageIcon(getClass().getResource("img/cavaleiro_opcoes_2.png")).getImage(),
+				DrawImg(g, "img/cavaleiro_opcoes_2.png",
 						0,
 						0,
 						700,
-						500, null);
+						500);
 				// Sublinhados
 				if(cavaleiro_opcao == 0) {
-					g.drawImage(new ImageIcon(getClass().getResource("img/sublinhado.png")).getImage(),
+					DrawImg(g, "img/sublinhado.png",
 							0,
 							0,
 							700,
-							500, null);
+							500);
 				} else if(cavaleiro_opcao == 1) {
-					g.drawImage(new ImageIcon(getClass().getResource("img/sublinhado.png")).getImage(),
+					DrawImg(g, "img/sublinhado.png",
 							120,
 							0,
 							700,
-							500, null);
+							500);
 				} else if(cavaleiro_opcao == 2){
-					g.drawImage(new ImageIcon(getClass().getResource("img/sublinhado.png")).getImage(),
+					DrawImg(g, "img/sublinhado.png",
 							230,
 							0,
 							700,
-							500, null);
+							500);
 				} else if(cavaleiro_opcao == 3){
-					g.drawImage(new ImageIcon(getClass().getResource("img/sublinhado.png")).getImage(),
+					DrawImg(g, "img/sublinhado.png",
 							330,
 							0,
 							700,
-							500, null);
+							500);
 				} else if(cavaleiro_opcao == 4){
-					g.drawImage(new ImageIcon(getClass().getResource("img/sublinhado.png")).getImage(),
+					DrawImg(g, "img/sublinhado.png",
 							430,
 							0,
 							700,
-							500, null);
+							500);
 				}
 			}
 		}
@@ -419,9 +393,7 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		}
 		
 		Graphics g = bs.getDrawGraphics();
-		
-		
-		
+			
 		Map(g);
 		g.dispose();
 		bs.show();
@@ -474,7 +446,6 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		}
 		
 	}
-	
 	
 	
 	@Override
