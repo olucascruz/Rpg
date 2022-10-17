@@ -23,6 +23,10 @@ public class Personagem implements ComportamentoNormal{
 	
 	public void setVida(int vida) {
 		this.vida = vida;
+		if(vida <= 0) {
+			this.vida = 0;
+		}
+		
 	}
 	
 	public int getVida() {
@@ -52,12 +56,12 @@ public class Personagem implements ComportamentoNormal{
 
 	@Override
 	public void guardarItem() {
-		System.out.println(getNome() + " guardou o ítem.");
+		System.out.println(getNome() + " guardou o ï¿½tem.");
 	}
 
 	@Override
 	public void usarItem() {
-		System.out.println(getNome() + " usou o ítem.");
+		System.out.println(getNome() + " usou o ï¿½tem.");
 	}
 
 }

@@ -9,6 +9,7 @@ import java.util.Random;
 import Model.Cavaleiro;
 import Model.Dragao;
 import Model.Mago;
+import Model.Personagem;
 
 public class Game extends Canvas implements Runnable, KeyListener{
 	
@@ -85,8 +86,49 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		// Atualizar o sublinhado
 	}
 	
-	public void controlarAcoesDosPersonagens() {
+	public void controlarAcoesDosPersonagens(Personagem p, String acao) {
 		// M�todos do Luquinhas
+		if(p instanceof Cavaleiro) {
+			if(acao.equals("andar")) {
+				p.andar();
+			}else if(acao.equals("usarItem")) {
+				p.guardarItem();
+			}
+			else if(acao.equals("usarItem")) {
+				p.usarItem();
+			}
+			
+			if(acao.equals("Atacar")) {
+				if(cena_atual == 1) {
+					((Cavaleiro) p).atacar(dragao);
+				}
+				if(cena_atual == 2) {
+					((Cavaleiro) p).atacar(mago);
+				}
+				
+			}
+			
+		}else if(p instanceof Mago) {
+			if(acao.equals("andar")) {
+				p.andar();
+			}else if(acao.equals("usarItem")) {
+				p.guardarItem();
+			}
+			else if(acao.equals("usarItem")) {
+				p.usarItem();
+			}
+			
+		}else if(p instanceof Dragao){
+			if(acao.equals("andar")) {
+				p.andar();
+			}else if(acao.equals("usarItem")) {
+				p.guardarItem();
+			}
+			else if(acao.equals("usarItem")) {
+				p.usarItem();
+			}
+		}
+		
 	}
 	
 	public void Map(Graphics g) {
@@ -426,6 +468,7 @@ public class Game extends Canvas implements Runnable, KeyListener{
 				cavaleiro_opcoes = true;
 			} else if(cavaleiro_opcoes) {
 				updateEncontro();
+				controlarAcoesDosPersonagens(cavaleiro, "Atacar");
 				cena_stand_by = true;
 				cavaleiro_opcoes = false;
 				cavaleiro_opcao = 0;

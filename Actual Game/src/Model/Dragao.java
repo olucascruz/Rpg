@@ -1,6 +1,6 @@
 package Model;
 
-public class Dragao extends Personagem implements ComportamentoHeroico {
+public class Dragao extends Personagem implements ComportamentoFeroz {
 	
 	private String image = "img/dragao.png";
 	private String background = "img/deserto.png";
@@ -27,20 +27,21 @@ public class Dragao extends Personagem implements ComportamentoHeroico {
 		return fogo;
 	}
 
+
 	@Override
-	public void atacar() {
+	public void atirarFogo() {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void defender() {
+	public void voar() {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void saltar() {
+	public void morder() {
 		// TODO Auto-generated method stub
 		
 	}

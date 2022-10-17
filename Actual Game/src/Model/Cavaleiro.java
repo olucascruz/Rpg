@@ -60,9 +60,9 @@ public class Cavaleiro extends Personagem implements ComportamentoHeroico{
 	}
 
 	@Override
-	public void atacar() {
+	public void atacar(Personagem p) {
 		// TODO Auto-generated method stub
-		
+		p.setVida(getVida()-1);
 	}
 
 	@Override
