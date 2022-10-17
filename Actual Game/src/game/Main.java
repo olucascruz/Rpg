@@ -20,7 +20,7 @@ public class Main {
 		Dragao dragao = new Dragao("Bruto", 100, 30);
 
 		Game game = new Game();
-		JFrame frame = new JFrame("Space Capivara");
+		JFrame frame = new JFrame("Sopro de Fogo");
 		String filePath = "spaceThreat.wav";
 		musicStuff musicObject = new musicStuff();
 		
