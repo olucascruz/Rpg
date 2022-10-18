@@ -38,6 +38,8 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	boolean cavaleiro_opcoes = false;
 	int cavaleiro_opcao = 0;
 	
+	String acaoCav = "";
+	
 	public Game(){
 		this.setPreferredSize(new Dimension(700, 500));
 		this.addKeyListener(this);
@@ -87,6 +89,7 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	}
 	
 	public void controlarAcoesDosPersonagens(Personagem p, String acao) {
+		String acaoCav = cavaleiro.getAtacar();
 		// M�todos do Luquinhas
 		if(p instanceof Cavaleiro) {
 			if(acao.equals("andar")) {
@@ -101,9 +104,11 @@ public class Game extends Canvas implements Runnable, KeyListener{
 			if(acao.equals("Atacar")) {
 				if(cena_atual == 1) {
 					((Cavaleiro) p).atacar(dragao);
+					AnimCavaleiro(cavaleiro.getAtacar());
 				}
 				if(cena_atual == 2) {
 					((Cavaleiro) p).atacar(mago);
+					AnimCavaleiro(cavaleiro.getAtacar());
 				}
 				
 			}
@@ -129,6 +134,10 @@ public class Game extends Canvas implements Runnable, KeyListener{
 			}
 		}
 		
+	}
+	
+	public void AnimCavaleiro(String acao) {
+		acaoCav = acao;
 	}
 	
 	public void Map(Graphics g) {
@@ -220,6 +229,8 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		// Defender
 		DrawImg(g, cavaleiro.getDefender(), 30, 20, 600, 420);
 		*/
+		
+		DrawImg(g, acaoCav, 30, 20, 600, 420);
 		
 		// Troca de cenas - stand by
 		if(cena_stand_by) {
