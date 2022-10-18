@@ -1,85 +1,25 @@
 package game;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 import javax.swing.ImageIcon;
-import java.util.Random;
 
 import Model.Cavaleiro;
 import Model.Dragao;
 import Model.Mago;
-import Model.Personagem;
 
-public class Game extends Canvas implements Runnable, KeyListener{
+public class Game extends Canvas implements Runnable{
 	
 	Cavaleiro cavaleiro = new Cavaleiro("XXLucazXX", 10, 70);
 	Mago mago = new Mago("Felix", 100, 60);
 	Dragao dragao = new Dragao("Bruto", 100, 30);
 	
 	// Po��o - Mago - Drag�o
-	int cenas[] = {1, 1, 1};
-	int cena_atual = 0;
-	Random rand;
-	boolean pocao_ativo = true;
+	boolean pocao_ativo = false;
 	boolean dragao_ativo = false;
-	boolean mago_ativo = false;
-	
-	boolean cena_stand_by = true;
-	
-	boolean clique_para_continuar = true;
-	
-	// Op��es do cavaleiro
-	boolean cavaleiro_opcoes = false;
-	int cavaleiro_opcao = 0;
-	
-	String acaoCav = "";
-	
-	boolean texto_status = false;
-	boolean cena_andar = false;
-	int texto_atual = -1;
+	boolean mago_ativo = true;
 	
 	public Game(){
 		this.setPreferredSize(new Dimension(700, 500));
-		this.addKeyListener(this);
-		rand = new Random();
-	}
-	
-	public void updateEncontro() {
-		boolean cena_alterada = false;
-		
-		while(!cena_alterada) {
-			cena_atual = rand.nextInt(3);
-			
-			if(cena_atual == 0 && cenas[0] == 1) {
-				cena_alterada = true;
-				pocao_ativo = true;
-				dragao_ativo = false;
-				mago_ativo = false;
-			} else if(cena_atual == 1 && cenas[1] == 1) {
-				cena_alterada = true;
-				pocao_ativo = false;
-				dragao_ativo = true;
-				mago_ativo = false;
-			} else if(cena_atual == 2 && cenas[2] == 1) {
-				cena_alterada = true;
-				pocao_ativo = false;
-				dragao_ativo = false;
-				mago_ativo = true;
-			}
-		}
-	}
-	
-	public String updateCenaStandBy(int cena) {
-		if(cena == 0) {
-			return "img/achou_pocao.png";
-		} else if(cena == 1) {
-			return "img/achou_dragao.png";
-		} else if(cena == 2) {
-			return "img/achou_mago.png";
-		}
-		
-		return "";
 	}
 	
 	public String updateStatusDoJogo(int opcao) {
@@ -102,58 +42,6 @@ public class Game extends Canvas implements Runnable, KeyListener{
 				y,
 				w,
 				h, null);
-	}
-	
-	public void controlarAcoesDosPersonagens(Personagem p, String acao) {
-		String acaoCav = cavaleiro.getAtacar();
-		// M�todos do Luquinhas
-		if(p instanceof Cavaleiro) {
-			if(acao.equals("andar")) {
-				p.andar();
-			}else if(acao.equals("usarItem")) {
-				p.guardarItem();
-			}
-			else if(acao.equals("usarItem")) {
-				p.usarItem();
-			}
-			
-			if(acao.equals("Atacar")) {
-				if(cena_atual == 1) {
-					((Cavaleiro) p).atacar(dragao);
-					AnimCavaleiro(cavaleiro.getAtacar());
-				}
-				if(cena_atual == 2) {
-					((Cavaleiro) p).atacar(mago);
-					AnimCavaleiro(cavaleiro.getAtacar());
-				}
-				
-			}
-			
-		}else if(p instanceof Mago) {
-			if(acao.equals("andar")) {
-				p.andar();
-			}else if(acao.equals("usarItem")) {
-				p.guardarItem();
-			}
-			else if(acao.equals("usarItem")) {
-				p.usarItem();
-			}
-			
-		}else if(p instanceof Dragao){
-			if(acao.equals("andar")) {
-				p.andar();
-			}else if(acao.equals("usarItem")) {
-				p.guardarItem();
-			}
-			else if(acao.equals("usarItem")) {
-				p.usarItem();
-			}
-		}
-		
-	}
-	
-	public void AnimCavaleiro(String acao) {
-		acaoCav = acao;
 	}
 	
 	public void Map(Graphics g) {
@@ -245,48 +133,6 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		// Defender
 		DrawImg(g, cavaleiro.getDefender(), 30, 20, 600, 420);
 		*/
-		
-		DrawImg(g, acaoCav, 30, 20, 600, 420);
-		
-		// Troca de cenas - stand by
-		if(cena_stand_by) {
-			DrawImg(g, updateCenaStandBy(cena_atual), 0, 0, 700, 500);
-		}
-		
-		// Op��es do Cavaleiro
-		if(cavaleiro_opcoes) {
-			// Se for a cena da po��o
-			if(cena_atual == 0) {
-				DrawImg(g, "img/cavaleiro_opcoes_1.png", 0, 0, 700, 500);
-				// Sublinhados
-				if(cavaleiro_opcao == 0) {
-					DrawImg(g, "img/sublinhado.png", 40, 0, 700, 500);
-				} else if(cavaleiro_opcao == 1) {
-					DrawImg(g, "img/sublinhado.png", 220, 0, 700, 500);
-				} else {
-					DrawImg(g, "img/sublinhado.png", 400, 0, 700, 500);
-				}
-			} else {
-				DrawImg(g, "img/cavaleiro_opcoes_2.png", 0, 0, 700, 500);
-				// Sublinhados
-				if(cavaleiro_opcao == 0) {
-					DrawImg(g, "img/sublinhado.png", 0, 0, 700, 500);
-				} else if(cavaleiro_opcao == 1) {
-					DrawImg(g, "img/sublinhado.png", 120, 0, 700, 500);
-				} else if(cavaleiro_opcao == 2){
-					DrawImg(g, "img/sublinhado.png", 230, 0, 700, 500);
-				} else if(cavaleiro_opcao == 3){
-					DrawImg(g, "img/sublinhado.png", 330, 0, 700, 500);
-				} else if(cavaleiro_opcao == 4){
-					DrawImg(g, "img/sublinhado.png", 430, 0, 700, 500);
-				}
-			}
-		}
-		
-		// Cenas de status
-		if(texto_status) {
-			DrawImg(g, updateStatusDoJogo(texto_atual), 0, 0, 700, 500);
-		}
 	}
 	
 	public void render() {
@@ -301,98 +147,6 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		Map(g);
 		g.dispose();
 		bs.show();
-				
-	}
-	
-	@Override
-	public void keyPressed(KeyEvent e) {
-		if(e.getKeyCode() == KeyEvent.VK_LEFT) {
-			if(cavaleiro_opcoes) {
-				if(cavaleiro_opcao > 0) {
-					cavaleiro_opcao--;
-				}
-			}
-		}else if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			if(cavaleiro_opcoes) {
-				if(cena_atual == 0) {
-					if(cavaleiro_opcao < 2) {
-						cavaleiro_opcao++;
-					}
-				} else {
-					if(cavaleiro_opcao < 4) {
-						cavaleiro_opcao++;
-					}
-				}
-			}
-		} else if(e.getKeyCode() == KeyEvent.VK_SPACE) {
-			if(cena_stand_by) {
-				cena_stand_by = false;
-				cavaleiro_opcoes = true;
-			} else if(cavaleiro_opcoes) {
-				// Cena da poção
-				if(cena_atual == 0){
-					// Sair da cena
-					if(cavaleiro_opcao == 0) {
-						updateEncontro();
-						texto_status = true;
-						cavaleiro_opcoes = false;
-						cavaleiro_opcao = 0;
-					} else if(cavaleiro_opcao == 1) { // Usar ítem
-						cavaleiro_opcoes = false;
-						cavaleiro_opcao = 0;
-						texto_atual = 0;
-						texto_status = true;
-						cavaleiro.setVida(cavaleiro.getVida() + 1);
-						
-						// Deletar cena das opções
-						cenas[0] = 0;
-					} else { // Guardar ítem
-						cavaleiro_opcoes = false;
-						texto_atual = 1;
-						texto_status = true;
-						cavaleiro.setPossuiPocao(true);
-						updateEncontro();
-						  
-						// Deletar cena das opções
-						cenas[0] = 0;
-					}
-				} else { // Restante das cenas
-					// Sair da cena
-					if(cavaleiro_opcao == 3) {
-						updateEncontro();
-						cena_stand_by = true;
-						cavaleiro_opcoes = false;
-						cavaleiro_opcao = 0;
-					} else if(cavaleiro_opcao == 0) { // Atacar
-						
-					} else if(cavaleiro_opcao == 1) { // Defender
-						
-					} else if(cavaleiro_opcao == 2) { // Saltar
-						
-					} else { // Usar ítem
-						
-					}
-				}
-				
-			} else if(texto_status) {
-				texto_status = false;
-				cena_stand_by = true;
-			}
-		}
-	}
-	
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			
-		}else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
-			
-		}else if(e.getKeyCode() == KeyEvent.VK_SPACE) {
-			
-		}
-		
 	}
 	
 	
@@ -401,19 +155,8 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		
 		while(true) {
 			render();
-			try {
-				Thread.sleep(1000/60);
-			} catch(InterruptedException e) {
-				e.printStackTrace();
-			}
 		}
 		
 	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		
-	}
-
 	
 }
