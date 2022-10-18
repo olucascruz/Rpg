@@ -18,12 +18,15 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	
+	
+	
+	
 	Cavaleiro cavaleiro = new Cavaleiro("XXLucazXX", 10, 70);
 	Mago mago = new Mago("Felix", 100, 60);
 	Dragao dragao = new Dragao("Bruto", 100, 30);
 	
 	// Po��o - Mago - Drag�o
-	int cenas[] = {1, 1, 1};
 	int cena_atual = 0;
 	Random rand;
 	boolean pocao_ativo = true;
