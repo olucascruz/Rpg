@@ -13,20 +13,12 @@ import Model.Personagem;
 
 public class Game extends Canvas implements Runnable, KeyListener{
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	
-	
-	
-	
 	Cavaleiro cavaleiro = new Cavaleiro("XXLucazXX", 10, 70);
 	Mago mago = new Mago("Felix", 100, 60);
 	Dragao dragao = new Dragao("Bruto", 100, 30);
 	
 	// Po��o - Mago - Drag�o
+	int cenas[] = {1, 1, 1};
 	int cena_atual = 0;
 	Random rand;
 	boolean pocao_ativo = true;
@@ -43,6 +35,10 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	
 	String acaoCav = "";
 	
+	boolean texto_status = false;
+	boolean cena_andar = false;
+	int texto_atual = -1;
+	
 	public Game(){
 		this.setPreferredSize(new Dimension(700, 500));
 		this.addKeyListener(this);
@@ -50,20 +46,27 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	}
 	
 	public void updateEncontro() {
-		cena_atual = rand.nextInt(3);
+		boolean cena_alterada = false;
 		
-		if(cena_atual == 0) {
-			pocao_ativo = true;
-			dragao_ativo = false;
-			mago_ativo = false;
-		} else if(cena_atual == 1) {
-			pocao_ativo = false;
-			dragao_ativo = true;
-			mago_ativo = false;
-		} else {
-			pocao_ativo = false;
-			dragao_ativo = false;
-			mago_ativo = true;
+		while(!cena_alterada) {
+			cena_atual = rand.nextInt(3);
+			
+			if(cena_atual == 0 && cenas[0] == 1) {
+				cena_alterada = true;
+				pocao_ativo = true;
+				dragao_ativo = false;
+				mago_ativo = false;
+			} else if(cena_atual == 1 && cenas[1] == 1) {
+				cena_alterada = true;
+				pocao_ativo = false;
+				dragao_ativo = true;
+				mago_ativo = false;
+			} else if(cena_atual == 2 && cenas[2] == 1) {
+				cena_alterada = true;
+				pocao_ativo = false;
+				dragao_ativo = false;
+				mago_ativo = true;
+			}
 		}
 	}
 	
@@ -79,16 +82,26 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		return "";
 	}
 	
+	public String updateStatusDoJogo(int opcao) {
+		
+		// Poções
+		if(opcao == 0) {
+			return "img/usou_pocao.png";
+		} else if(opcao == 1) {
+			return "img/guardou_pocao.png";
+		} else if(opcao == 2) {
+			return "img/sem_pocao.png";
+		}
+		
+		return "";
+	}
+	
 	public void DrawImg(Graphics g, String path, int x, int y, int w, int h) {
 		g.drawImage(new ImageIcon(getClass().getResource(path)).getImage(),
 				x,
 				y,
 				w,
 				h, null);
-	}
-	
-	public void updateOpcoes() {
-		// Atualizar o sublinhado
 	}
 	
 	public void controlarAcoesDosPersonagens(Personagem p, String acao) {
@@ -269,6 +282,11 @@ public class Game extends Canvas implements Runnable, KeyListener{
 				}
 			}
 		}
+		
+		// Cenas de status
+		if(texto_status) {
+			DrawImg(g, updateStatusDoJogo(texto_atual), 0, 0, 700, 500);
+		}
 	}
 	
 	public void render() {
@@ -311,11 +329,54 @@ public class Game extends Canvas implements Runnable, KeyListener{
 				cena_stand_by = false;
 				cavaleiro_opcoes = true;
 			} else if(cavaleiro_opcoes) {
-				updateEncontro();
-				//controlarAcoesDosPersonagens(cavaleiro, "Atacar");
+				// Cena da poção
+				if(cena_atual == 0){
+					// Sair da cena
+					if(cavaleiro_opcao == 0) {
+						updateEncontro();
+						texto_status = true;
+						cavaleiro_opcoes = false;
+						cavaleiro_opcao = 0;
+					} else if(cavaleiro_opcao == 1) { // Usar ítem
+						cavaleiro_opcoes = false;
+						cavaleiro_opcao = 0;
+						texto_atual = 0;
+						texto_status = true;
+						cavaleiro.setVida(cavaleiro.getVida() + 1);
+						
+						// Deletar cena das opções
+						cenas[0] = 0;
+					} else { // Guardar ítem
+						cavaleiro_opcoes = false;
+						texto_atual = 1;
+						texto_status = true;
+						cavaleiro.setPossuiPocao(true);
+						updateEncontro();
+						  
+						// Deletar cena das opções
+						cenas[0] = 0;
+					}
+				} else { // Restante das cenas
+					// Sair da cena
+					if(cavaleiro_opcao == 3) {
+						updateEncontro();
+						cena_stand_by = true;
+						cavaleiro_opcoes = false;
+						cavaleiro_opcao = 0;
+					} else if(cavaleiro_opcao == 0) { // Atacar
+						
+					} else if(cavaleiro_opcao == 1) { // Defender
+						
+					} else if(cavaleiro_opcao == 2) { // Saltar
+						
+					} else { // Usar ítem
+						
+					}
+				}
+				
+			} else if(texto_status) {
+				texto_status = false;
 				cena_stand_by = true;
-				cavaleiro_opcoes = false;
-				cavaleiro_opcao = 0;
 			}
 		}
 	}

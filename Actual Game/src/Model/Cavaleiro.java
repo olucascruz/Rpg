@@ -10,9 +10,12 @@ public class Cavaleiro extends Personagem implements ComportamentoHeroico{
 	private boolean saltando;
 	private boolean atacando;
 	private boolean defendendo;
+	private boolean possuiPocao;
 
 	public Cavaleiro(String nome, int position_x, int position_y) {
 		super(nome, position_x, position_y);
+		
+		possuiPocao = false;
 	}
 
 	public String getImagePlayer() {
@@ -57,6 +60,14 @@ public class Cavaleiro extends Personagem implements ComportamentoHeroico{
 
 	public void setDefendendo(boolean defendendo) {
 		this.defendendo = defendendo;
+	}
+
+	public boolean isPossuiPocao() {
+		return possuiPocao;
+	}
+
+	public void setPossuiPocao(boolean possuiPocao) {
+		this.possuiPocao = possuiPocao;
 	}
 
 	@Override
