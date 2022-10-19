@@ -72,9 +72,9 @@ public class Jogo {
 						+ "2 - Dragão\n"));
 				
 				if(op2 == 1) {
-					showImage("", cavaleiro.atacar(" mago."));
+					showImage("img/cavaleiro_ataca_mago.png", cavaleiro.atacar(" mago."));
 				} else {
-					showImage("", cavaleiro.atacar(" dragão."));
+					showImage("img/cavaleiro_ataca_dragao.png", cavaleiro.atacar(" dragão."));
 				}
 			break;
 			case 2:
@@ -83,9 +83,9 @@ public class Jogo {
 						+ "2 - Dragão\n"));
 				
 				if(op2 == 1) {
-					showImage("", cavaleiro.defender(" mago."));
+					showImage("img/cavaleiro_defende_mago.png", cavaleiro.defender(" mago."));
 				} else {
-					showImage("", cavaleiro.defender(" dragão."));
+					showImage("img/cavaleiro_defende_dragao.png", cavaleiro.defender(" dragão."));
 				}
 			break;
 			case 3:
@@ -94,19 +94,19 @@ public class Jogo {
 						+ "2 - Dragão\n"));
 				
 				if(op2 == 1) {
-					showImage("", cavaleiro.saltar(" mago."));
+					showImage("img/cavaleiro_salta_mago.png", cavaleiro.saltar(" mago."));
 				} else {
-					showImage("", cavaleiro.saltar(" dragão."));
+					showImage("img/cavaleiro_salta_dragao.png", cavaleiro.saltar(" dragão."));
 				}
 			break;
 			case 4:
-				showImage("", cavaleiro.usarItem());
+				showImage("img/cavaleiro_pocao.png", cavaleiro.usarItem());
 			break;
 			case 5:
-				showImage("", cavaleiro.guardarItem());
+				showImage("img/cavaleiro_pocao.png", cavaleiro.guardarItem());
 			break;
 			case 6:
-				showImage("", cavaleiro.andar());
+				showImage("img/cavaleiro_anda.png", cavaleiro.andar());
 			break;
 		}
 	}
@@ -128,9 +128,9 @@ public class Jogo {
 						+ "2 - Dragão\n"));
 				
 				if(op2 == 1) {
-					showImage("", mago.invisibilidade(" cavaleiro."));
+					showImage("img/mago_invisivel_cavaleiro.png", mago.invisibilidade(" cavaleiro."));
 				} else {
-					showImage("", mago.invisibilidade(" dragão."));
+					showImage("img/mago_invisivel_dragao.png", mago.invisibilidade(" dragão."));
 				}
 			break;
 			case 2:
@@ -139,19 +139,19 @@ public class Jogo {
 						+ "2 - Dragão\n"));
 				
 				if(op2 == 1) {
-					showImage("", mago.ultraRapidez(" cavaleiro."));
+					showImage("img/mago_veloz_cavaleiro.png", mago.ultraRapidez(" cavaleiro."));
 				} else {
-					showImage("", mago.ultraRapidez(" dragão."));
+					showImage("img/mago_veloz_dragao.png", mago.ultraRapidez(" dragão."));
 				}
 			break;
 			case 3:
-				showImage("", mago.usarItem());
+				showImage("img/mago_pocao.png", mago.usarItem());
 			break;
 			case 4:
-				showImage("", mago.guardarItem());
+				showImage("img/mago_pocao.png", mago.guardarItem());
 			break;
 			case 5:
-				showImage("", mago.andar());
+				showImage("img/mago_anda.png", mago.andar());
 			break;
 		}
 	}
@@ -174,9 +174,9 @@ public class Jogo {
 						+ "2 - Cavaleiro\n"));
 				
 				if(op2 == 1) {
-					showImage("", dragao.morder(" mago."));
+					showImage("img/dragao_morde_mago.png", dragao.morder(" mago."));
 				} else {
-					showImage("", dragao.morder(" cavaleiro."));
+					showImage("img/dragao_morde_cavaleiro.png", dragao.morder(" cavaleiro."));
 				}
 			break;
 			case 2:
@@ -185,9 +185,9 @@ public class Jogo {
 						+ "2 - Cavaleiro\n"));
 				
 				if(op2 == 1) {
-					showImage("", dragao.atirarFogo(" mago."));
+					showImage("img/dragao_fogo_mago.png", dragao.atirarFogo(" mago."));
 				} else {
-					showImage("", dragao.atirarFogo(" cavaleiro."));
+					showImage("img/dragao_fogo_cavaleiro.png", dragao.atirarFogo(" cavaleiro."));
 				}
 			break;
 			case 3:
@@ -196,19 +196,19 @@ public class Jogo {
 						+ "2 - Cavaleiro\n"));
 				
 				if(op2 == 1) {
-					showImage("", dragao.voar(" mago."));
+					showImage("img/dragao_voa_mago.png", dragao.voar(" mago."));
 				} else {
-					showImage("", dragao.voar(" cavaleiro."));
+					showImage("img/dragao_voa_cavaleiro.png", dragao.voar(" cavaleiro."));
 				}
 			break;
 			case 4:
-				showImage("", dragao.usarItem());
+				showImage("img/dragao_pocao.png", dragao.usarItem());
 			break;
 			case 5:
-				showImage("", dragao.guardarItem());
+				showImage("img/dragao_pocao.png", dragao.guardarItem());
 			break;
 			case 6:
-				showImage("", dragao.andar());
+				showImage("img/dragao_anda.png", dragao.andar());
 			break;
 		}
 	}
