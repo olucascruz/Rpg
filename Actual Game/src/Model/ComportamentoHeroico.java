@@ -1,7 +1,7 @@
 package Model;
 
 public interface ComportamentoHeroico {
-	public void atacar(Personagem p);
-	public void defender();
-	public void saltar();
+	public String atacar(String inimigo);
+	public String defender(String inimigo);
+	public String saltar(String inimigo);
 }

@@ -1,7 +1,7 @@
 package Model;
 
 public interface ComportamentoNormal {
-	public void andar();
-	public void guardarItem();
-	public void usarItem();
+	public String andar();
+	public String guardarItem();
+	public String usarItem();
 }
